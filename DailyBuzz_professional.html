@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>DailyBuzz — Entertainment</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#080810;color:#fff;font-family:Arial,Helvetica,sans-serif}
+header{position:sticky;top:0;z-index:5;background:#0d0d16ee;backdrop-filter:blur(12px);border-bottom:1px solid #252533}
+.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;align-items:center;gap:22px}.logo{font-size:25px;font-weight:900;margin-right:auto}.logo b{color:#ffb000}
+.nav a{color:#ddd;text-decoration:none;font-size:14px}.search{background:#171722;border:1px solid #30303e;color:white;border-radius:22px;padding:10px 14px;width:180px}
+.loginbtn{background:#ffb000;color:#111;border:0;border-radius:20px;padding:10px 17px;font-weight:800}
+main{max-width:1100px;margin:auto;padding:28px 20px}.hero{min-height:330px;border-radius:25px;padding:40px;display:flex;align-items:end;background:linear-gradient(90deg,#151523 15%,#151523cc 55%,#15152322),radial-gradient(circle at 80% 30%,#5d4100,#111 48%);border:1px solid #292936}
+.kicker{color:#ffb000;font-weight:800}.hero h1{font-size:46px;max-width:650px;margin:8px 0}.muted{color:#aaa;line-height:1.55}.btn{display:inline-block;background:#ffb000;color:#111;padding:13px 20px;border-radius:10px;text-decoration:none;font-weight:800;margin-top:8px}
+h2{margin-top:38px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#15151f;border:1px solid #292936;border-radius:17px;overflow:hidden}.thumb{height:150px;background:linear-gradient(135deg,#2b243b,#806000);display:flex;align-items:center;justify-content:center;font-size:44px}.body{padding:18px}.tag{font-size:11px;background:#ffb000;color:#111;padding:5px 8px;border-radius:20px;font-weight:bold}.body h3{margin:12px 0 7px}.read{color:#ffb000;text-decoration:none;font-weight:bold;font-size:14px}
+footer{margin-top:60px;border-top:1px solid #252533;padding:30px 20px;text-align:center;color:#888}
+#modal{display:none;position:fixed;inset:0;background:#000b;z-index:20;align-items:center;justify-content:center;padding:20px}.box{background:#15151f;border:1px solid #333344;border-radius:20px;padding:28px;width:100%;max-width:390px}.box input{width:100%;padding:14px;margin:7px 0;background:#0c0c13;border:1px solid #3a3a49;border-radius:9px;color:#fff}.close{float:right;color:#aaa;cursor:pointer}
+@media(max-width:750px){.nav a{display:none}.search{width:125px}.hero{padding:25px;min-height:300px}.hero h1{font-size:34px}.grid{grid-template-columns:1fr}.thumb{height:140px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<div class="logo">Daily<b>Buzz</b></div>
+<a href="#">Home</a><a href="#bigg-boss">Bigg Boss</a><a href="#trending">Trending</a>
+<input class="search" id="search" placeholder="Search..." oninput="filterCards()">
+<button class="loginbtn" onclick="openLogin()">Login</button>
+</div></header>
+
+<main>
+<section class="hero">
+<div><div class="kicker">🔥 DAILY ENTERTAINMENT</div>
+<h1>Know what's happening. Stay entertained.</h1>
+<p class="muted">Bigg Boss highlights, entertainment news, trending moments and original recaps — all in one place.</p>
+<a class="btn" href="#bigg-boss">Explore Updates</a></div>
+</section>
+
+<h2 id="bigg-boss">🔥 Bigg Boss Daily</h2>
+<div class="grid" id="cards">
+<article class="card" data-title="bigg boss today episode highlights">
+<div class="thumb">🎬</div><div class="body"><span class="tag">TODAY</span><h3>Today's Episode Highlights</h3><p class="muted">Add your original recap and commentary here.</p><a class="read" href="#">Read update →</a></div>
+</article>
+<article class="card" data-title="bigg boss trending moment">
+<div class="thumb">⭐</div><div class="body"><span class="tag">TRENDING</span><h3>Bigg Boss Trending Moment</h3><p class="muted">Share a short, original summary of the latest moment.</p><a class="read" href="#">Read update →</a></div>
+</article>
+<article class="card" data-title="contestant update">
+<div class="thumb">👑</div><div class="body"><span class="tag">UPDATE</span><h3>Contestant Update</h3><p class="muted">Add verified information and your own commentary.</p><a class="read" href="#">Read update →</a></div>
+</article>
+</div>
+
+<h2 id="trending">📈 Trending Entertainment</h2>
+<div class="grid">
+<article class="card"><div class="thumb">🎤</div><div class="body"><span class="tag">MUSIC</span><h3>What's Trending Today?</h3><p class="muted">Entertainment stories and original summaries.</p></div></article>
+<article class="card"><div class="thumb">🍿</div><div class="body"><span class="tag">MOVIES</span><h3>New Releases & Buzz</h3><p class="muted">Add your own news and reviews.</p></div></article>
+<article class="card"><div class="thumb">✨</div><div class="body"><span class="tag">CELEBS</span><h3>Celebrity Updates</h3><p class="muted">Keep readers updated with sourced information.</p></div></article>
+</div>
+</main>
+
+<footer>© 2026 DailyBuzz • Entertainment & Original Updates</footer>
+
+<div id="modal"><div class="box"><span class="close" onclick="closeLogin()">✕</span><h2 style="margin-top:0">Welcome back 👋</h2><p class="muted">Enter your email or phone number.</p><input id="loginInput" placeholder="Email or phone"><button class="loginbtn" style="width:100%;margin-top:8px" onclick="demoLogin()">Continue</button><p style="font-size:11px;color:#777">Demo interface. Connect a real OTP/authentication service before launch.</p></div></div>
+
+<script>
+function openLogin(){document.getElementById('modal').style.display='flex'}
+function closeLogin(){document.getElementById('modal').style.display='none'}
+function demoLogin(){let x=document.getElementById('loginInput').value.trim();if(!x){alert('Enter your email or phone number.');return}closeLogin();alert('Demo login successful!')}
+function filterCards(){let q=document.getElementById('search').value.toLowerCase();document.querySelectorAll('#cards .card').forEach(c=>c.style.display=c.dataset.title.includes(q)?'block':'none')}
+</script>
+</body>
+</html>
